@@ -55,6 +55,12 @@
                         <span>Map</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#treemap-chart">
+                        <i class="fas fa-th"></i>
+                        <span>Tree Map</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <div class="sidebar-footer">
@@ -161,8 +167,24 @@
                 <div class="chart"></div>
             </div>
         </div>
+
+      
+
+        <div class="chart-section" id="treemap-chart">
+            <div class="section-title"><h2>Treemap Visualization</h2></div>
+            <div class="chart-container">
+                <div class="chart-description">
+                    <h3>Confirmed Cases by Country</h3>
+                    <p>This treemap shows the relative proportion of confirmed COVID-19 cases by country. Each box represents a top 10 country sized according to the number of confirmed cases.</p>
+                </div>
+                <div class="chart"></div>
+            </div>
+        </div>
+        
         
     </div>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
 </body>
 </html>

@@ -44,6 +44,11 @@ d3.json("data.json").then(function(data) {
     createRadialChart(top10Countries);
     createChoroplethMap(top10Countries);
 
+    createSankeyDiagram(top10Countries);
+
+    createTreemap(top10Countries);
+
+
     // Show the first chart on the home page
     showGraph(0);
 });
@@ -908,3 +913,174 @@ async function createChoroplethMap(data) {
     }
 }
 
+function createSankeyDiagram(data) {
+    console.log("Creating Sankey Diagram...");
+
+    const sankeyData = { nodes: [], links: [] };
+    const nodeMap = new Map();
+
+    const addNode = (name) => {
+        if (!nodeMap.has(name)) {
+            nodeMap.set(name, sankeyData.nodes.length);
+            sankeyData.nodes.push({ name });
+        }
+        return nodeMap.get(name);
+    };
+
+    data.forEach(d => {
+        const country = d.attributes.Country_Region;
+        const confirmed = d.attributes.Confirmed;
+        const deaths = d.attributes.Deaths;
+        const recovered = d.attributes.Recovered;
+
+        const confirmedNode = addNode(`${country} Confirmed`);
+        const deathNode = addNode(`${country} Deaths`);
+        const recoveredNode = addNode(`${country} Recovered`);
+
+        sankeyData.links.push(
+            { source: confirmedNode, target: deathNode, value: deaths },
+            { source: confirmedNode, target: recoveredNode, value: recovered }
+        );
+    });
+
+    const width = 900, height = 600;
+
+    d3.select("#sankey-chart .chart").html(""); // Clear previous
+
+    const svg = d3.select("#sankey-chart .chart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    const sankey = d3.sankey()
+        .nodeWidth(20)
+        .nodePadding(15)
+        .extent([[1, 1], [width - 1, height - 6]]);
+
+    const { nodes, links } = sankey({
+        nodes: sankeyData.nodes.map(d => Object.assign({}, d)),
+        links: sankeyData.links.map(d => Object.assign({}, d))
+    });
+
+    const tooltip = d3.select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background", "#fff")
+        .style("padding", "8px")
+        .style("border", "1px solid #999")
+        .style("border-radius", "5px")
+        .style("box-shadow", "0 2px 6px rgba(0,0,0,0.3)")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+    svg.append("g")
+        .selectAll("rect")
+        .data(nodes)
+        .join("rect")
+        .attr("x", d => d.x0)
+        .attr("y", d => d.y0)
+        .attr("height", d => d.y1 - d.y0)
+        .attr("width", d => d.x1 - d.x0)
+        .attr("fill", "#0096c7")
+        .on("mouseover", (event, d) => {
+            tooltip.transition().duration(200).style("opacity", 0.95);
+            tooltip
+                .html(`<strong>${d.name}</strong><br/>Value: ${d3.format(",")(d.value)}`)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
+
+    svg.append("g")
+        .attr("fill", "none")
+        .selectAll("path")
+        .data(links)
+        .join("path")
+        .attr("d", d3.sankeyLinkHorizontal())
+        .attr("stroke", "#48cae4")
+        .attr("stroke-width", d => Math.max(1, d.width))
+        .attr("stroke-opacity", 0.6);
+
+    svg.append("g")
+        .style("font", "11px sans-serif")
+        .selectAll("text")
+        .data(nodes)
+        .join("text")
+        .attr("x", d => d.x0 < width / 2 ? d.x1 + 6 : d.x0 - 6)
+        .attr("y", d => (d.y1 + d.y0) / 2)
+        .attr("dy", "0.35em")
+        .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
+        .text(d => d.name);
+}
+
+
+function createTreemap(data) {
+    const width = 800;
+    const height = 600;
+
+    const treemapData = {
+        name: "World",
+        children: data.map(d => ({
+            name: d.attributes.Country_Region,
+            value: d.attributes.Confirmed
+        }))
+    };
+
+    const root = d3.hierarchy(treemapData)
+        .sum(d => d.value)
+        .sort((a, b) => b.value - a.value);
+
+    d3.select("#treemap-chart .chart").html("");
+
+    const svg = d3.select("#treemap-chart .chart")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    d3.treemap()
+        .size([width, height])
+        .padding(2)(root);
+
+    const color = d3.scaleSequential(d3.interpolateBlues)
+        .domain([0, d3.max(root.leaves(), d => d.value)]);
+
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background", "#fff")
+        .style("padding", "8px")
+        .style("border", "1px solid #999")
+        .style("border-radius", "5px")
+        .style("box-shadow", "0 2px 6px rgba(0,0,0,0.3)")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+    svg.selectAll("rect")
+        .data(root.leaves())
+        .enter()
+        .append("rect")
+        .attr("x", d => d.x0)
+        .attr("y", d => d.y0)
+        .attr("width", d => d.x1 - d.x0)
+        .attr("height", d => d.y1 - d.y0)
+        .attr("fill", d => color(d.value))
+        .on("mouseover", (event, d) => {
+            tooltip.transition().duration(200).style("opacity", 0.95);
+            tooltip
+                .html(`<strong>${d.data.name}</strong><br/>Cases: ${d3.format(",")(d.data.value)}`)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => tooltip.transition().duration(300).style("opacity", 0));
+
+    svg.selectAll("text")
+        .data(root.leaves())
+        .enter()
+        .append("text")
+        .attr("x", d => d.x0 + 4)
+        .attr("y", d => d.y0 + 14)
+        .text(d => d.data.name)
+        .attr("font-size", "10px")
+        .attr("fill", "black");
+}
