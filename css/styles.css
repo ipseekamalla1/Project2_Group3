@@ -1,4 +1,5 @@
 /* Global Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
@@ -14,7 +15,9 @@ body {
     letter-spacing: 0.5px;
 }
 
+
 /* Sidebar Styles */
+
 .sidebar {
     position: fixed;
     left: 0;
@@ -37,7 +40,7 @@ body {
 }
 
 .sidebar-header h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -45,7 +48,7 @@ body {
 }
 
 .sidebar-header p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 0.9rem;
     opacity: 0.8;
     letter-spacing: 0.5px;
@@ -62,7 +65,7 @@ body {
 }
 
 .sidebar nav ul li a {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #fff;
     text-decoration: none;
     display: flex;
@@ -96,11 +99,13 @@ body {
     padding: 0 20px;
     font-size: 12px;
     opacity: 0.7;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
 }
 
+
 /* Main Content Styles */
+
 .main-content {
     margin-left: 250px;
     padding: 2rem;
@@ -120,7 +125,7 @@ body {
 }
 
 .chart-section::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -144,7 +149,6 @@ body {
 .chart {
     order: 2;
     width: 100%;
-
     border: 2px solid #e0e0e0;
     border-radius: 12px;
     padding: 1.5rem;
@@ -154,7 +158,7 @@ body {
 
 .chart-description {
     order: 1;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     padding: 2rem;
     background: #f8f9fa;
     border-radius: 12px;
@@ -172,7 +176,7 @@ body {
 }
 
 .chart-description h3::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -182,14 +186,16 @@ body {
 }
 
 .chart-description p {
-    font-family: 'EB Garamond', serif;
+    font-family: "EB Garamond", serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: #444;
     margin-bottom: 1.5rem;
 }
 
+
 /* Section Title Styles */
+
 .section-title {
     text-align: center;
     margin-bottom: 2rem;
@@ -198,14 +204,16 @@ body {
 }
 
 .section-title h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Cormorant Garamond", serif;
     font-size: 2rem;
     font-weight: 600;
     color: #1a1a2e;
     letter-spacing: 0.5px;
 }
 
+
 /* Responsive Design */
+
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
@@ -213,32 +221,29 @@ body {
         position: relative;
         padding: 1rem;
     }
-
     .main-content {
         margin-left: 0;
         padding: 1rem;
     }
-
     .chart-section {
         padding: 1.5rem;
         margin-bottom: 2rem;
     }
-
     .chart {
         height: 400px;
         padding: 1rem;
     }
-
     .section-title h2 {
         font-size: 1.8rem;
     }
-
     .chart-description h3 {
         font-size: 1.3rem;
     }
 }
 
+
 /* Animations */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -254,7 +259,9 @@ body {
     animation: fadeIn 0.6s ease-out;
 }
 
+
 /* Scrollbar Styles */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -279,4 +286,202 @@ body {
 
 .filter-container input {
     margin-top: 10px;
+}
+
+
+/* Group Footer Styles */
+
+.group-footer {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    padding: 2.5rem 0 0 0;
+    margin-top: 3rem;
+    margin-bottom: -1rem;
+    padding-left: 10rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2.5rem 2rem;
+    text-align: center;
+}
+
+.footer-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.footer-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #00b4d8, #0096c7);
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.member:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.member-name {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.member-id {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .member {
+        width: 100%;
+        max-width: 300px;
+    }
+    .footer-title {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* Cover Page Styles */
+
+.cover-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.cover-content {
+    background: #fff;
+    padding: 4rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    border: 3px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00b4d8, #0096c7);
+}
+
+.cover-content h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3rem;
+    color: #1a1a2e;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.project-info {
+    margin-top: 3rem;
+}
+
+.project-info h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    color: #16213e;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.team-list {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(0, 180, 216, 0.05);
+    border-radius: 10px;
+}
+
+.team-list p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 1rem 0;
+    font-weight: 400;
+}
+
+.course-info {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.course-info p {
+    font-family: "EB Garamond", serif;
+    font-size: 1.2rem;
+    color: #444;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .cover-content {
+        padding: 2rem;
+    }
+    .cover-content h1 {
+        font-size: 2.2rem;
+    }
+    .project-info h2 {
+        font-size: 1.8rem;
+    }
+    .team-list {
+        padding: 1.5rem;
+    }
+    .team-list p,
+    .course-info p {
+        font-size: 1rem;
+    }
 }

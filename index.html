@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>COVID-19 Data Visualization</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo.v1.min.js"></script>
 </head>
+
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
@@ -19,6 +21,12 @@
         </div>
         <nav>
             <ul>
+                <li>
+                    <a href="/pages/cover.html">
+                        <i class="fas fa-home"></i>
+                        <span>Cover Page</span>
+                    </a>
+                </li>
                 <li>
                     <a href="#bar-chart">
                         <i class="fas fa-chart-bar"></i>
@@ -40,7 +48,7 @@
                 <li>
                     <a href="#line-chart">
                         <i class="fas fa-chart-line"></i>
-                                                <span>Line Chart</span>
+                        <span>Line Chart</span>
                     </a>
                 </li>
                 <li>
@@ -63,9 +71,6 @@
                 </li>
             </ul>
         </nav>
-        <div class="sidebar-footer">
-            <p>Last Updated: <span id="last-updated">Loading...</span></p>
-        </div>
     </div>
 
     <div class="main-content">
@@ -76,12 +81,15 @@
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>Top 10 Countries by COVID-19 Cases</h3>
-                    <p>This bar chart shows the top 10 countries with the highest number of COVID-19 cases. The height of each bar represents the total number of cases in that country.</p>
-                    <p style="color: #0077b6; font-weight: bold;">Hover over a bar to see the exact number of cases. The bar will change color, and a tooltip will display detailed information.</p>
+                    <p>
+                        This bar chart shows the top 10 countries with the highest number of COVID-19 cases. The height of each bar represents the total number of cases in that country.
+                    </p>
+                    <p style="color: #0077b6; font-weight: bold">
+                        Hover over a bar to see the exact number of cases. The bar will change color, and a tooltip will display detailed information.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
-            
         </div>
 
         <div class="chart-section" id="pie-chart">
@@ -91,9 +99,12 @@
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>Global COVID-19 Distribution</h3>
-                    <p>This pie chart illustrates the global distribution of COVID-19 cases, showing the proportion of active cases, recoveries, and deaths worldwide of 8 countries</p>
-                    <p style="color: #0077b6; font-weight: bold;">Click a slice to expand it and highlight the selected country.</p>
-
+                    <p>
+                        This pie chart illustrates the global distribution of COVID-19 cases, showing the proportion of active cases, recoveries, and deaths worldwide of 8 countries
+                    </p>
+                    <p style="color: #0077b6; font-weight: bold">
+                        Click a slice to expand it and highlight the selected country.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
@@ -106,12 +117,15 @@
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>Cases vs Deaths Correlation</h3>
-                    <p>This scatter plot examines the relationship between the number of COVID-19 cases and deaths across different countries. Each point represents a country.</p>
-                    <p style="color: #0077b6; font-weight: bold;">Zoom over a data point to view detailed information about a country's cases and deaths. Click on a point to highlight it and see a visual emphasis on its data.</p>
+                    <p>
+                        This scatter plot examines the relationship between the number of COVID-19 cases and deaths across different countries. Each point represents a country.
+                    </p>
+                    <p style="color: #0077b6; font-weight: bold">
+                        Zoom over a data point to view detailed information about a country's cases and deaths. Click on a point to highlight it and see a visual emphasis on its data.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
-            
         </div>
         <div class="chart-section" id="line-chart">
             <div class="section-title">
@@ -120,14 +134,16 @@
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>COVID-19 Confirmed Cases vs Deaths</h3>
-                    <p>This line chart displays the relationship between the number of confirmed COVID-19 cases and the number of deaths across different countries. The x-axis represents the confirmed cases, and the y-axis represents the number of deaths.</p>
-                    <p style="color: #0077b6; font-weight: bold;">Hover over the line to view the exact data for each point.</p>
+                    <p>
+                        This line chart displays the relationship between the number of confirmed COVID-19 cases and the number of deaths across different countries. The x-axis represents the confirmed cases, and the y-axis represents the number of deaths.
+                    </p>
+                    <p style="color: #0077b6; font-weight: bold">
+                        Hover over the line to view the exact data for each point.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
         </div>
-        
-
 
         <div class="chart-section" id="bubble-chart">
             <div class="section-title">
@@ -137,23 +153,20 @@
                 <!-- Chart Description -->
                 <div class="chart-description">
                     <h3>Cases vs Deaths vs Population</h3>
-                    <p>This bubble chart visualizes the relationship between COVID-19 cases, deaths, and population size across different countries. Bubble size represents population.</p>
+                    <p>
+                        This bubble chart visualizes the relationship between COVID-19 cases, deaths, and population size across different countries. Bubble size represents population.
+                    </p>
                 </div>
-        
+
                 <!-- Filter Container (After Description) -->
                 <div class="filter-container">
                     <label for="confirmed-range">Filter by Confirmed Cases</label>
-                    <input type="range" id="confirmed-range" min="0" max="1000000" step="50000" value="1000000">
+                    <input type="range" id="confirmed-range" min="0" max="1000000" step="50000" value="1000000" />
                     <span id="range-value">1000000</span>
                 </div>
-        
-            
             </div>
         </div>
-        
-        
 
-       
         <div class="chart-section" id="map">
             <div class="section-title">
                 <h2>Choropleth Map</h2>
@@ -161,30 +174,58 @@
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>COVID-19 Confirmed Cases by Country</h3>
-                    <p>This choropleth map visualizes the number of confirmed COVID-19 cases across different countries. The intensity of the color represents the severity of the cases.</p>
-                    <p style="color: #0077b6; font-weight: bold;">Hover over a country to see detailed case data.</p>
+                    <p>
+                        This choropleth map visualizes the number of confirmed COVID-19 cases across different countries. The intensity of the color represents the severity of the cases.
+                    </p>
+                    <p style="color: #0077b6; font-weight: bold">
+                        Hover over a country to see detailed case data.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
         </div>
 
-      
-
         <div class="chart-section" id="treemap-chart">
-            <div class="section-title"><h2>Treemap Visualization</h2></div>
+            <div class="section-title">
+                <h2>Treemap Visualization</h2>
+            </div>
             <div class="chart-container">
                 <div class="chart-description">
                     <h3>Confirmed Cases by Country</h3>
-                    <p>This treemap shows the relative proportion of confirmed COVID-19 cases by country. Each box represents a top 10 country sized according to the number of confirmed cases.</p>
+                    <p>
+                        This treemap shows the relative proportion of confirmed COVID-19 cases by country. Each box represents a top 10 country sized according to the number of confirmed cases.
+                    </p>
                 </div>
                 <div class="chart"></div>
             </div>
         </div>
-        
-        
     </div>
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
     <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 
+    <footer class="group-footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Project Team Members</h3>
+            <div class="team-members">
+                <div class="member">
+                    <span class="member-name">Ipseeka Malla</span>
+                    <span class="member-id">(8959723)</span>
+                </div>
+                <div class="member">
+                    <span class="member-name">Ashim Nepal</span>
+                    <span class="member-id">(8972648)</span>
+                </div>
+                <div class="member">
+                    <span class="member-name">Sumeet Yadav</span>
+                    <span class="member-id">(8964479)</span>
+                </div>
+                <div class="member">
+                    <span class="member-name">Ashok Subedi</span>
+                    <span class="member-id">(8972276)</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
